@@ -12435,6 +12435,7 @@ div#notebook {
 <p><strong>回答:</strong>
 参考文章 <a href="http://www.cnblogs.com/jerrylead/archive/2011/04/18/2020209.html">http://www.cnblogs.com/jerrylead/archive/2011/04/18/2020209.html</a></p>
 <p>决定预测：Detergents_Paper ，依据PCA的一些文章中介绍，分数越高表示拟合成功，拟合的约好，表示改特征重要性越高，对消费习惯来说就越重要。</p>
+<p>这个特征和其它的特征有强相关性，对于区分消费者习惯来说，是可替换的。</p>
 
 </div>
 </div>
@@ -14219,7 +14220,7 @@ RmK88IgAAAAASUVORK5CYII=
 <li><p>Detergents_Paper, Milk</p>
 </li>
 </ol>
-<p>数据呈现正态分布，数据点都靠近 (0,0) 坐标点，</p>
+<p>数据呈现正态分布，数据点都靠近 (0,0) 坐标点，所以数据的分布存在偏度，为左偏态。</p>
 <p>数据相关性验证了我的猜想。</p>
 
 </div>
@@ -19241,13 +19242,31 @@ GIfHYDAYDAaDwWAwbFn+L5rzdK9H1OrNAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">good_data</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">outliers</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[41]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Int64Index([65, 66, 75, 128, 154], dtype=&#39;int64&#39;, name=u&#39;idx&#39;)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -19267,8 +19286,9 @@ GIfHYDAYDAaDwWAwbFn+L5rzdK9H1OrNAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>回答:</strong>
-这些异常点需要从数据集中移除，因为在异常之的干扰下，模型在拟合过程中考虑相关性可能影响模型的训练效果。</p>
+<p><strong>回答:</strong></p>
+<p>在多个特征下的异常点有：65, 66, 75, 128, 154</p>
+<p>这些异常点需要从数据集中移除，因为在异常之的干扰下，模型在拟合过程中考虑相关性可能影响模型的训练效果。</p>
 
 </div>
 </div>
@@ -19639,14 +19659,12 @@ ZzGSJEmS1DyLkSRJkqTm/RtqtBiH4gnLIgAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答:</strong></p>
-<p>第一个和第二个总共表示了：0.4430</p>
-<p>前四个总共表示了：0.9311</p>
+<p>第一个和第二个总共表示了：0.4430 的方差</p>
+<p>前四个总共表示了：0.9311 的方差</p>
 <p>第一主成分 Detergents_Paper，Grocery， Milk 负相关，Fresh和Frozen正相关，像是小型生鲜零售店</p>
-<p>第二主成分 Fresh，Frozen，Delicatessen 负相关，其它都是负相关，<font color='red'>这个我真不知道是啥</font></p>
+<p>第二主成分 Fresh，Frozen，Delicatessen 负相关最显著，其它也是负相关，像是酒店</p>
 <p>第三主成分 Delicatessen 正相关，Fresh负相关，像是熟食销售商</p>
 <p>第四主成分 Frozen 占据主要比重，其它比重均不大，Frozen 和 Fresh 为负数，似乎是冷饮便利店</p>
-<blockquote><p>PS:参考资料有中文的吗？英文不太好。</p>
-</blockquote>
 
 </div>
 </div>
@@ -22717,42 +22735,6 @@ Ko/ABwAAAEDlEfgAAAAAqLz/D57RZdy3ub8JAAAAAElFTkSuQmCC
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">!</span> git status 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>On branch master
-Your branch is up-to-date with &#39;origin/master&#39;.
-Untracked files:
-  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
-
-	<span class="ansi-red-fg">customer_segments.html</span>
-
-nothing added to commit but untracked files present (use &#34;git add&#34; to track)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
